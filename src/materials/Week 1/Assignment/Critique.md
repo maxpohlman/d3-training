@@ -13,6 +13,7 @@ Bad:
 - No values at top of bars
 - Two Y-Axes (Line is not the sum of bars)
 - "Total of Amount"
+- Values are in terms of what?
 
 ---
 ###### Viz 2:
