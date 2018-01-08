@@ -1,0 +1,47 @@
+<html>
+
+    <head>
+        <title>Dev Env</title>
+    </head>
+    <body>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+            var w = 1500;
+            var h = 1000;
+            var barpadding = 1; 
+
+            var svg = d3.select('body')
+                        .append('svg')
+                        .attr('width', w)
+                        .attr('height', h);
+            svg
+                .append("rect")
+                .attr("x", 30)
+                .attr("y", 0)
+                .attr('width', 100)
+                .attr('height', 20)
+                .attr("fill", 'blue');
+        
+            var mycircles = [{'rad':3, 'x':50},{'rad':6, 'x':100},{'rad':12, 'x':150}];
+
+           svg.selectAll('circles')
+                .data(mycircles)
+                .enter()
+                .append('circle')
+                .attr("cx", d=>d.x)
+                .attr("cy", 50)
+                .attr("r", d=>d.rad)
+                .style("stroke", 'blue')
+                .style("stroke-width", '2px')
+
+
+
+            svg
+                .append('polygon')
+                .attr('points', '150,105 300,105 400,160 400,320 300,405 150,405 50,320 50,160 ')
+            
+            
+        </script>
+    </body>
+
+</html>
