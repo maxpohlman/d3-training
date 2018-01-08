@@ -1,0 +1,84 @@
+<html>
+
+    <head>
+        <title>Dev Env</title>
+    </head>
+    <body>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+            var w = 1500;
+            var h = 1000;
+            var loc = "data.json";
+            var svg = d3.select('body')
+                        .append('svg')
+                        .attr('width', w)
+                        .attr('height', h);
+            
+
+            d3.json("data.json", function(df) {
+                
+                
+                function updateViz(df){
+                    if (document.getElementsByClassName("countme").length == 0){
+                        var randomx = [];
+                        var randomy = [];
+                        for (var i = 0; i < df.length; i++){
+                            randomx[i] = Math.random()*1200 + 20
+                            randomy[i] = Math.random()*800 + 20
+                        }
+                        svg.selectAll('circs')
+                            .data(df)
+                            .enter()
+                            .append('circle')
+                            .attr('cx', (d,i) => randomx[i])
+                            .attr('cy',(d,i) => randomy[i])
+                            .attr('class', 'countme')
+                            .attr('r', 20)
+                            .attr('stroke', d=>d.color)
+                            .style("stroke-width", '10px');
+                        return;
+                    }
+                    
+                    var randomx = [];
+                    var randomy = [];
+                    for (var i = 0; i < df.length; i++){
+                        randomx[i] = Math.random()*1200 + 20
+                        randomy[i] = Math.random()*800 + 20
+                    };
+                    
+                    var circs = svg.selectAll('.countme').data(df);
+
+                    circs
+                        .exit()
+                        .remove();   
+
+                    circs
+                        .attr('cx', (d,i) => randomx[i])
+                        .attr('cy',(d,i) => randomy[i]);
+
+                     console.log(df);   
+
+
+                    return;    
+                } 
+                
+                
+            function animate(data) {
+                updateViz(data);
+                var loop = setInterval(function() { 
+                    if (data.length === 0) { clearInterval(loop); }
+                    data.pop();
+                    updateViz(data);
+                }, 2000);
+            }
+               animate(df);
+
+                
+            });
+            
+            
+        </script>
+    </body>
+
+</html>
+             
