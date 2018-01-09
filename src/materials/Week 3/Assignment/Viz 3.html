@@ -19,13 +19,15 @@
                 
                 
                 function updateViz(df){
+                    
+                    var randomx = [];
+                    var randomy = [];
+                    for (var i = 0; i < df.length; i++){
+                        randomx[i] = Math.random()*1200 + 20;
+                        randomy[i] = Math.random()*500 + 20;
+                    };
+                    
                     if (document.getElementsByClassName("countme").length == 0){
-                        var randomx = [];
-                        var randomy = [];
-                        for (var i = 0; i < df.length; i++){
-                            randomx[i] = Math.random()*1200 + 20
-                            randomy[i] = Math.random()*800 + 20
-                        }
                         svg.selectAll('circs')
                             .data(df)
                             .enter()
@@ -35,19 +37,12 @@
                             .attr('class', 'countme')
                             .attr('r', 20)
                             .attr('stroke', d=>d.color)
-                            .style("stroke-width", '10px');
+                            .style("stroke-width", '7.5px');
                         return;
                     }
                     
-                    var randomx = [];
-                    var randomy = [];
-                    for (var i = 0; i < df.length; i++){
-                        randomx[i] = Math.random()*1200 + 20
-                        randomy[i] = Math.random()*800 + 20
-                    };
-                    
-                    var circs = svg.selectAll('.countme').data(df);
 
+                    var circs = svg.selectAll('.countme').data(df);
                     circs
                         .exit()
                         .remove();   
@@ -55,9 +50,6 @@
                     circs
                         .attr('cx', (d,i) => randomx[i])
                         .attr('cy',(d,i) => randomy[i]);
-
-                     console.log(df);   
-
 
                     return;    
                 } 
@@ -71,8 +63,8 @@
                     updateViz(data);
                 }, 2000);
             }
-               animate(df);
-
+                
+            animate(df);
                 
             });
             
