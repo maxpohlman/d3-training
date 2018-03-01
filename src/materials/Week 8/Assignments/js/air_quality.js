@@ -135,37 +135,13 @@ function buildChart(containerId) {
             .attr('y', innerHeight + 50)
             .text(d => d.txt);
 
-
-
-
-        function sorter(df, type) {
-            if (type == 'asc') {
-                df.sort((a, b) => {
-                    return (a.Emissions > b.Emissions) ? 1 : -1
-                })
-            }
-            if (type == 'state') {
-
-                df.sort((a, b) => {
-                    return (a.State > b.State) ? 1 : -1
-                })
-            }
-            if (type == 'desc') {
-                df.sort((a, b) => {
-                    return (a.Emissions < b.Emissions) ? 1 : -1
-                })
-            }
-
-            return df;
-        }
-
-
         var sort_functions = {
             'asc': function (a, b) { return (a.Emissions > b.Emissions) ? 1 : -1; },
             'desc': function (a, b) { return (a.Emissions < b.Emissions) ? 1 : -1; },
             'state': function (a, b) { return (a.State > b.State) ? 1 : -1; }
         }
 
+        // radio stuff
         d3.selectAll("input[name='viz']").on("change", function () {
             var val = this.value;
             var sorted_df = df.sort(sort_functions[val]);

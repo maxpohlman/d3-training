@@ -32,7 +32,7 @@ function buildChart(containerId) {
   //Define path generator
   var path = d3.geoPath().projection(projection);
 
-  d3.json("us-states.json", function(json) {
+  d3.json("us-states.json", function (json) {
     // plots states
     g
       .selectAll(".states")
@@ -46,10 +46,11 @@ function buildChart(containerId) {
       // .style("stroke-opacity", 0.15)
       .style("stroke", "black");
 
-    d3.csv("NSRDB_StationsMeta.csv", function(data) {
+    d3.csv("NSRDB_StationsMeta.csv", function (data) {
       data.forEach(d => {
         d.elev = +d["NSRDB_ELEV (m)"];
       });
+
       function llreturn(d, ll) {
         var op = projection([d.longitude, d.latitude]);
         if (op == null) {
@@ -62,6 +63,7 @@ function buildChart(containerId) {
           return op[1];
         }
       }
+
       var cols = d3.scaleOrdinal(d3.schemeCategory10);
       var sizes = d3
         .scaleLog()
@@ -123,7 +125,8 @@ function buildChart(containerId) {
         .style("font-size", "16px")
         .text(d => "Class " + d.class);
 
-      d3.selectAll("input[name='viz']").on("change", function() {
+      //checkboxes
+      d3.selectAll("input[name='viz']").on("change", function () {
         if (this.checked == true) {
           check(this);
         } else {
@@ -131,7 +134,8 @@ function buildChart(containerId) {
         }
       });
 
-      d3.select("#elebutton").on("click", function() {
+      // button
+      d3.select("#elebutton").on("click", function () {
         var min = document.getElementById("min").value;
         var max = document.getElementById("max").value;
         if (isNaN(min) | isNaN(max)) {
@@ -143,7 +147,7 @@ function buildChart(containerId) {
           .selectAll(".Class1,.Class2,.Class3")
           .transition()
           .duration(1000)
-          .attr("cy", function(d) {
+          .attr("cy", function (d) {
             if ((d.elev >= min) & (d.elev <= max)) {
               return llreturn(d, "lat");
             } else {
