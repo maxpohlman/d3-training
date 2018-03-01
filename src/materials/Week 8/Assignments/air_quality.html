@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <title>Chart Boilerplate</title>
+    <!-- <link rel="stylesheet" href="./css/styles.css" /> -->
+
+</head>
+
+<body>
+    <div id="chart-holder"></div>
+
+    <form id="form" style='float:left; clear: both;margin-left: 195px;'>
+        <br>
+        <input type="radio" name="viz" id='state' value="state" checked=true>Sort by State
+        <br>
+        <input type="radio" name="viz" value="desc">Sort by Emissions Descending
+        <br>
+        <input type="radio" name="viz" value="asc">Sort by Emissions Ascending
+    </form>
+    <p> Delay (Milliseconds)</p>
+    <input type="text" id='msbox' value="50">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="./js/air_quality.js"></script>
+</body>
+
+</html>

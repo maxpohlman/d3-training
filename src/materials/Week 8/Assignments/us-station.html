@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <title>Chart Boilerplate</title>
+    <!-- <link rel="stylesheet" href="./css/styles.css" /> -->
+
+</head>
+
+<body>
+    <div id="chart-holder"></div>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="./js/us-station.js"></script>
+    <form id="form" style='float:right; clear: both;margin-right: 300px;'>
+        <input type="checkbox" name="viz" id='c1' value="1" checked="true">Class 1
+        <input type="checkbox" name="viz" id='c2' value="2" checked="true">Class 2
+        <input type="checkbox" name="viz" id='c3' value="3" checked="true">Class 3
+    </form>
+    <form id="form" style='float:right; clear: both;margin-right: 300px;'>
+        <input type="text" id="min">Min Elevation
+        <br>
+        <input type="text" id="max">Max Elevation
+    </form>
+    <button type="button" id="elebutton" style='float:right; clear: both;margin-right: 265px;'>Click Me!</button>
+
+</body>
+
+</html>
